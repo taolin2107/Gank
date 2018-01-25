@@ -1,6 +1,6 @@
 ext {
     compileSdkVersion = 26
-    minSdkVersion = 21
+    minSdkVersion = 19
     targetSdkVersion = 26
 
     appCompatV7Version = "26.0.1"
