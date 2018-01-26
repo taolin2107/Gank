@@ -30,7 +30,23 @@ dependencies {
     implementation appDependencies.appCompatV7
     implementation appDependencies.constraintLayout
 
+    implementation appDependencies.recyclerview
+    implementation appDependencies.pagerIndicator
+
+    //dagger di framework
+    implementation appDependencies.dagger
+    kapt appDependencies.daggerCompiler
+
+    //rxjava library
+    implementation appDependencies.rxjava
+    implementation appDependencies.rxandroid
+    implementation appDependencies.rxlifecycle
+    implementation appDependencies.rxlifecycleandroid
+    implementation appDependencies.rxbinding
+    implementation appDependencies.bugly
+
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.testRunner
     androidTestImplementation appTestDependencies.espresso
+    debugImplementation appDebugDependencies.leakcanary
 }
