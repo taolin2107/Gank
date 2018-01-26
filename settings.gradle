@@ -1,1 +1,1 @@
-include ':app', ':buildsystem'
+include ':app', ':buildsystem', ':data'

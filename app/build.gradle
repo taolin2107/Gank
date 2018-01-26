@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     def globalConfig = rootProject.extensions.ext
     compileSdkVersion globalConfig.compileSdkVersion
@@ -23,15 +25,18 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     implementation appDependencies.appCompatV7
     implementation appDependencies.constraintLayout
-
+    implementation appDependencies.design
     implementation appDependencies.recyclerview
-    implementation appDependencies.pagerIndicator
 
     //dagger di framework
     implementation appDependencies.dagger
@@ -43,6 +48,12 @@ dependencies {
     implementation appDependencies.rxlifecycle
     implementation appDependencies.rxlifecycleandroid
     implementation appDependencies.rxbinding
+
+    //retrofit library
+    implementation appDependencies.retrofit
+    implementation appDependencies.converterGson
+    implementation appDependencies.adapterRxjava
+
     implementation appDependencies.bugly
 
     testImplementation appTestDependencies.junit

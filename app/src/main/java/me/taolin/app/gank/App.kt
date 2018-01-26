@@ -53,6 +53,6 @@ class App : Application() {
     }
 
     private fun initBugly() {
-        CrashReport.initCrashReport(this, "d206ecc980", BuildConfig.DEBUG)
+//        CrashReport.initCrashReport(this, "d206ecc980", BuildConfig.DEBUG)
     }
 }

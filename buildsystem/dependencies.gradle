@@ -1,6 +1,6 @@
 ext {
     compileSdkVersion = 26
-    minSdkVersion = 21
+    minSdkVersion = 19
     targetSdkVersion = 26
 
     appCompatV7Version = "26.0.1"
@@ -25,8 +25,8 @@ ext {
     greendaoVersion = '3.2.2'
     eventbusVersion = '3.1.1'
     retrofitVersion = '2.3.0'
-    converterGsonVersion = "latest.version"
-    adapterRxjavaVersion = "latest.version"
+    converterGsonVersion = "2.3.0"
+    adapterRxjavaVersion = "2.3.0"
     picassoVersion = "2.5.2"
     glideVersion = "4.5.0"
     glideTransformVersion = "3.0.1"

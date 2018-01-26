@@ -42,7 +42,7 @@ open class BaseDialog : DialogFragment(), LifecycleProvider<FragmentEvent> {
         lifecycleSubject.onNext(FragmentEvent.CREATE)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleSubject.onNext(FragmentEvent.CREATE_VIEW)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

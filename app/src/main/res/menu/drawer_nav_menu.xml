@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/page_type"
+        android:checkableBehavior="single">
+
+        <item android:id="@+id/type_today"
+            android:icon="@drawable/ic_menu_today"
+            android:title="@string/page_type_today" />
+
+        <item android:id="@+id/type_android"
+            android:icon="@drawable/ic_menu_android"
+            android:title="@string/page_type_android" />
+
+        <item android:id="@+id/type_ios"
+            android:icon="@drawable/ic_menu_ios"
+            android:title="@string/page_type_ios" />
+
+        <item android:id="@+id/type_front_end"
+            android:icon="@drawable/ic_menu_front_end"
+            android:title="@string/page_type_front_end" />
+
+        <item android:id="@+id/type_beauty"
+            android:icon="@drawable/ic_menu_beauty"
+            android:title="@string/page_type_beauty" />
+
+        <item android:id="@+id/type_relax_video"
+            android:icon="@drawable/ic_menu_relax_video"
+            android:title="@string/page_type_relax_video" />
+    </group>
+
+    <group
+        android:id="@+id/page_contact"
+        android:title="@string/drawer_menu_divider_desc"
+        android:checkableBehavior="single">
+
+        <item android:id="@+id/type_about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/page_type_about" />
+
+        <item android:id="@+id/type_feedback"
+            android:icon="@drawable/ic_menu_feedback"
+            android:title="@string/page_type_feedback" />
+    </group>
+</menu>
