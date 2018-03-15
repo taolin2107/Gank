@@ -6,27 +6,27 @@
 
         <item android:id="@+id/type_today"
             android:icon="@drawable/ic_menu_today"
-            android:title="@string/page_type_today" />
+            android:title="@string/category_today" />
 
         <item android:id="@+id/type_android"
             android:icon="@drawable/ic_menu_android"
-            android:title="@string/page_type_android" />
+            android:title="@string/category_android" />
 
         <item android:id="@+id/type_ios"
             android:icon="@drawable/ic_menu_ios"
-            android:title="@string/page_type_ios" />
+            android:title="@string/category_ios" />
 
         <item android:id="@+id/type_front_end"
             android:icon="@drawable/ic_menu_front_end"
-            android:title="@string/page_type_front_end" />
+            android:title="@string/category_end" />
 
         <item android:id="@+id/type_beauty"
             android:icon="@drawable/ic_menu_beauty"
-            android:title="@string/page_type_beauty" />
+            android:title="@string/category_beauty" />
 
         <item android:id="@+id/type_relax_video"
             android:icon="@drawable/ic_menu_relax_video"
-            android:title="@string/page_type_relax_video" />
+            android:title="@string/category_relax_video" />
     </group>
 
     <group
@@ -36,10 +36,10 @@
 
         <item android:id="@+id/type_about"
             android:icon="@drawable/ic_menu_about"
-            android:title="@string/page_type_about" />
+            android:title="@string/category_about" />
 
         <item android:id="@+id/type_feedback"
             android:icon="@drawable/ic_menu_feedback"
-            android:title="@string/page_type_feedback" />
+            android:title="@string/category_feedback" />
     </group>
 </menu>

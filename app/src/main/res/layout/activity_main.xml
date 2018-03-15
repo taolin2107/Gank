@@ -21,7 +21,7 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
         <FrameLayout
-            android:id="@+id/contentPanel"
+            android:id="@+id/content_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

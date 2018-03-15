@@ -24,7 +24,8 @@ class JobExecutor @Inject constructor(): ThreadExecutor {
     private val threadPoolExecutor: ThreadPoolExecutor = ThreadPoolExecutor(INITIAL_POOL_SIZE, MAX_POOL_SIZE,
             KEEP_ALIVE_TIME, KEEP_ALIVE_TIME_UNIT, workQueue, threadFactory)
 
-    override fun execute(command: Runnable?) {
+    override fun execute(command: Runnable) {
+        threadPoolExecutor.execute(command)
     }
 
     private inner class JobThreadFactory : ThreadFactory {

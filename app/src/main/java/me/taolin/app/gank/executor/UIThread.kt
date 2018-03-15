@@ -13,5 +13,4 @@ import javax.inject.Inject
 class UIThread @Inject constructor(): PostThreadExecutor {
 
     override fun getSchedule(): Scheduler = AndroidSchedulers.mainThread()
-
 }

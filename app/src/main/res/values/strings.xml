@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Gank</string>
 
-    <string name="page_type_today">今天</string>
-    <string name="page_type_android">Android</string>
-    <string name="page_type_ios">iOS</string>
-    <string name="page_type_front_end">前端</string>
-    <string name="page_type_beauty">福利</string>
-    <string name="page_type_relax_video">休息视频</string>
-    <string name="page_type_about">关于</string>
-    <string name="page_type_feedback">反馈</string>
+    <string name="category_today">今天</string>
+    <string name="category_android">Android</string>
+    <string name="category_ios">iOS</string>
+    <string name="category_end">前端</string>
+    <string name="category_beauty">福利</string>
+    <string name="category_relax_video">休息视频</string>
+    <string name="category_about">关于</string>
+    <string name="category_feedback">反馈</string>
     <string name="drawer_menu_divider_desc">联系</string>
 
     <string name="drawer_open_desc">打开</string>

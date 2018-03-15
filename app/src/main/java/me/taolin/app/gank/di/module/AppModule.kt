@@ -16,7 +16,7 @@ import javax.inject.Singleton
  * @description
  */
 
-@Module class AppModule(val context: Context) {
+@Module class AppModule(private val context: Context) {
 
     @Provides
     @Singleton
