@@ -33,8 +33,10 @@ class CategoryPresenter @Inject constructor(private val threadExecutor: ThreadEx
         disposable = gankApi.getCategoryData(category, pageNum, pageCount)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutor.getSchedule())
-                .subscribe {
+                .subscribe({
                     categoryView?.refreshList(it.results)
-                }
+                }, { throwable ->
+                    throwable.printStackTrace()
+                })
     }
 }

@@ -1,7 +1,6 @@
 package me.taolin.app.gank.ui.category
 
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View

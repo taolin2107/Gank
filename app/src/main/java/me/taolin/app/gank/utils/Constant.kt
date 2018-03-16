@@ -8,3 +8,5 @@ package me.taolin.app.gank.utils
  */
 
 const val BASE_URL = "http://gank.io"
+
+const val KEY_CONTENT_URL = "content_url"

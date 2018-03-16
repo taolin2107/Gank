@@ -25,6 +25,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         navigationMenu.setNavigationItemSelectedListener(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        replaceFragment(R.id.content_panel, CategoryFragment.newInstance("all"))
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         title = item.title
         drawerLayout.closeDrawer(GravityCompat.START)
