@@ -2,7 +2,7 @@ package me.taolin.app.gank.data.source
 
 import io.reactivex.Observable
 import me.taolin.app.gank.data.GankData
-import me.taolin.app.gank.utils.BASE_URL
+import me.taolin.app.gank.utils.BASE_URL_GANK
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class GankApiRepository @Inject constructor() {
 
     private val gankApiService = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BASE_URL_GANK)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
