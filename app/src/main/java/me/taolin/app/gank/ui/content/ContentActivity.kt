@@ -3,6 +3,7 @@ package me.taolin.app.gank.ui.content
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -64,6 +65,11 @@ class ContentActivity : BaseActivity() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
             progressBar.progress = newProgress
+            if (newProgress == 100) {
+                progressBar.visibility = View.GONE
+            } else {
+                progressBar.visibility = View.VISIBLE
+            }
         }
     }
 }

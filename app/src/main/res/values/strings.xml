@@ -14,4 +14,8 @@
     <string name="drawer_open_desc">打开</string>
     <string name="drawer_close_desc">关闭</string>
     <string name="menu_search_desc">搜寻</string>
+    <string name="tag_version">版本：%1$s</string>
+    <string name="check_new_version">检查更新</string>
+    <string name="app_desc">Gank是基于干货集中营（http://gank.io）开发的一款非官方客户端之一，致力于提供精选的Android、iOS、Web等类别的技术干货。\n
+        \n项目采用MVP架构，结合Dagger2, RxJava2, RxLifeCycle, Retrofit等优秀开源框架打造的一个流行的app架构，以及全部使用Kotlin开发。</string>
 </resources>

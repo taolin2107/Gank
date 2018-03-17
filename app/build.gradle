@@ -14,7 +14,7 @@ android {
         minSdkVersion globalConfig.minSdkVersion
         targetSdkVersion globalConfig.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
