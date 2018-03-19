@@ -69,6 +69,7 @@ dependencies {
     implementation appDependencies.adapterRxjava
 
     implementation appDependencies.bugly
+    implementation appDependencies.glide
 
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.testRunner

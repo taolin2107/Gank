@@ -11,6 +11,7 @@ import me.taolin.app.gank.R
 import me.taolin.app.gank.base.BaseActivity
 import me.taolin.app.gank.ui.about.AboutFragment
 import me.taolin.app.gank.ui.category.CategoryFragment
+import me.taolin.app.gank.utils.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,12 +32,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         title = item.title
         drawerLayout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.type_today -> replaceContent(CategoryFragment.newInstance("all"))
-            R.id.type_android -> replaceContent(CategoryFragment.newInstance("Android"))
-            R.id.type_ios -> replaceContent(CategoryFragment.newInstance("iOS"))
-            R.id.type_front_end -> replaceContent(CategoryFragment.newInstance("前端"))
-            R.id.type_beauty -> replaceContent(CategoryFragment.newInstance("福利"))
-            R.id.type_relax_video -> replaceContent(CategoryFragment.newInstance("休息视频"))
+            R.id.type_today -> replaceContent(CategoryFragment.newInstance(CATEGORY_ALL))
+            R.id.type_android -> replaceContent(CategoryFragment.newInstance(CATEGORY_ANDROID))
+            R.id.type_ios -> replaceContent(CategoryFragment.newInstance(CATEGORY_IOS))
+            R.id.type_front_end -> replaceContent(CategoryFragment.newInstance(CATEGORY_FRONT_END))
+            R.id.type_beauty -> replaceContent(CategoryFragment.newInstance(CATEGORY_BEAUTY))
+            R.id.type_relax_video -> replaceContent(CategoryFragment.newInstance(CATEGORY_VIDEO))
             R.id.type_about -> replaceContent(AboutFragment())
             R.id.type_feedback -> {}
         }
