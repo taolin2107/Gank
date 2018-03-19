@@ -61,10 +61,10 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
 
     override fun refreshList(list: List<Gank>) {
         if (pageCategory == CATEGORY_BEAUTY) {
-            listAdapter = ImageListAdapter(list)
+            listAdapter = ImageListAdapter(activity, list)
             articleListView.layoutManager = GridLayoutManager(activity, 2)
         } else {
-            listAdapter = ArticleListAdapter(list)
+            listAdapter = ArticleListAdapter(activity, list)
             articleListView.layoutManager = LinearLayoutManager(activity)
         }
         articleListView.adapter = listAdapter

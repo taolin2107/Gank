@@ -1,5 +1,6 @@
 package me.taolin.app.gank.ui.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -19,10 +20,10 @@ import me.taolin.app.gank.utils.KEY_CONTENT_URL
  * @date 2018/03/19
  * @description
  */
-class ImageListAdapter(private val imageList: List<Gank>) : RecyclerView.Adapter<ImageListAdapter.Holder>() {
+class ImageListAdapter(private val activity: Activity?, private val imageList: List<Gank>) : RecyclerView.Adapter<ImageListAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
-        return Holder(LayoutInflater.from(App.instance).inflate(R.layout.layout_image_list_item, parent, false))
+        return Holder(LayoutInflater.from(activity).inflate(R.layout.layout_image_list_item, parent, false))
     }
 
     override fun getItemCount() = imageList.size
@@ -31,9 +32,9 @@ class ImageListAdapter(private val imageList: List<Gank>) : RecyclerView.Adapter
         val gank = imageList[position]
         Glide.with(App.instance).load(gank.url).into(holder.image)
         holder.image.setOnClickListener {
-            val intent = Intent(App.instance, ContentActivity::class.java)
+            val intent = Intent(activity, ContentActivity::class.java)
             intent.putExtra(KEY_CONTENT_URL, gank.url)
-            App.instance.startActivity(intent)
+            activity?.startActivity(intent)
         }
     }
 

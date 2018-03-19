@@ -31,6 +31,11 @@ class ContentActivity : BaseActivity() {
         webView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         webView.settings.databaseEnabled = true
         webView.settings.setAppCacheEnabled(true)
+        webView.settings.useWideViewPort = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.setSupportZoom(true)
+        webView.settings.builtInZoomControls = true
+        webView.settings.displayZoomControls = false
         webView.webViewClient = MyWebViewClient()
         webView.webChromeClient = MyWebChromeClient()
         webView.isDrawingCacheEnabled = true
