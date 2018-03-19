@@ -1,5 +1,6 @@
 package me.taolin.app.gank.ui.about
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +11,10 @@ import me.taolin.app.gank.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_about.*
 import me.taolin.app.gank.App
 import me.taolin.app.gank.BuildConfig
+import me.taolin.app.gank.data.entity.Version
 import me.taolin.app.gank.di.component.DaggerAboutComponent
 import me.taolin.app.gank.di.module.AboutModule
+import java.io.File
 import javax.inject.Inject
 
 /**
@@ -46,12 +49,30 @@ class AboutFragment : BaseFragment(), AboutContract.View {
         presenter.dropView()
     }
 
-    override fun newVersionChecked(versionUrl: String) {
-        Log.d(TAG, "newVersionChecked: $versionUrl")
+    override fun newVersionChecked(version: Version) {
+        AlertDialog.Builder(activity)
+                .setTitle(R.string.new_version_checked_title)
+                .setMessage(getString(R.string.new_version_checked_message, BuildConfig.VERSION_NAME, version.version))
+                .setNegativeButton(android.R.string.cancel, { dialog, _ -> dialog.dismiss() })
+                .setPositiveButton(R.string.download, { dialog, _ ->
+                    presenter.downloadFile(version.url, File(""))
+                    dialog.dismiss()
+                })
+                .create()
+                .show()
     }
 
     override fun isLatestVersion() {
-        Log.d(TAG, "isLatestVersion: ")
+        AlertDialog.Builder(activity)
+                .setTitle(R.string.check_new_version)
+                .setMessage(R.string.is_latest_version_message)
+                .setPositiveButton(android.R.string.ok, { dialog, _ -> dialog.dismiss() })
+                .create()
+                .show()
+    }
+
+    override fun versionDownloaded() {
+        Log.d(TAG, "versionDownloaded: ")
     }
 
     private fun initInjector() {

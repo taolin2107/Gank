@@ -1,14 +1,19 @@
 package me.taolin.app.gank.ui.about
 
+import android.app.DownloadManager
+import android.content.Context
+import android.net.Uri
 import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import me.taolin.app.gank.App
 import me.taolin.app.gank.data.entity.Version
 import me.taolin.app.gank.executor.PostThreadExecutor
 import me.taolin.app.gank.executor.ThreadExecutor
 import me.taolin.app.gank.utils.URL_LATEST_VERSION
 import org.json.JSONObject
+import java.io.File
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -46,6 +51,8 @@ class AboutPresenter @Inject constructor(private val threadExecutor: ThreadExecu
             var input: InputStream? = null
             try {
                 conn = URL(url).openConnection() as HttpURLConnection
+                conn.defaultUseCaches = false
+                conn.useCaches = false
                 conn.connectTimeout = 5000
                 conn.readTimeout = 10000
                 conn.connect()
@@ -66,14 +73,14 @@ class AboutPresenter @Inject constructor(private val threadExecutor: ThreadExecu
                 }
             }
         }.map {
+            Log.d(TAG, "check version info: $it")
             val json = JSONObject(it)
             Version(json.getString("version"), json.getString("url"))
         }.subscribeOn(Schedulers.from(threadExecutor))
         .observeOn(postExecutor.getSchedule())
         .subscribe({ latestVersion ->
-            Log.d(TAG, "checkNewVersion: $latestVersion")
             if (latestVersion.version > currentVersion) {
-                aboutView?.newVersionChecked(latestVersion.url)
+                aboutView?.newVersionChecked(latestVersion)
             } else {
                 aboutView?.isLatestVersion()
             }
@@ -82,4 +89,18 @@ class AboutPresenter @Inject constructor(private val threadExecutor: ThreadExecu
         })
     }
 
+    override fun downloadFile(fileUrl: String, saveFile: File) {
+        val downloadRequest = DownloadManager.Request(Uri.parse(fileUrl))
+        downloadRequest.setTitle("文件下载")
+        downloadRequest.setDescription("下载中。。。")
+        //在通知栏显示下载进度
+        downloadRequest.allowScanningByMediaScanner()
+        downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+
+        //设置保存下载apk保存路径
+        downloadRequest.setDestinationInExternalPublicDir("download", "temp.apk")
+
+        //进入下载队列
+        (App.instance.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(downloadRequest)
+    }
 }

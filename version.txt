@@ -1,4 +1,4 @@
 {
     "version": "1.0.2",
-    "url": ""
+    "url": "https://codeload.github.com/googlesamples/android-ndk/zip/android-mk"
 }
