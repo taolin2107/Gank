@@ -18,8 +18,6 @@ interface AboutContract {
         fun newVersionChecked(version: Version)
 
         fun isLatestVersion()
-
-        fun versionDownloaded()
     }
 
     interface Presenter : BasePresenter<View> {

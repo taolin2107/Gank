@@ -1,4 +1,0 @@
-{
-    "version": "1.0.2",
-    "url": "https://raw.githubusercontent.com/taolin2107/Gank/master/f22054f99973a7253187074.apk"
-}

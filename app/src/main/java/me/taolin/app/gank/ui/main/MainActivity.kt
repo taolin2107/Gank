@@ -24,12 +24,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navigationMenu.setNavigationItemSelectedListener(this)
-    }
-
-    override fun onResume() {
-        super.onResume()
-//        replaceContent(CategoryFragment.newInstance("all"))
-        replaceContent(AboutFragment())
+        replaceContent(CategoryFragment.newInstance("all"))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

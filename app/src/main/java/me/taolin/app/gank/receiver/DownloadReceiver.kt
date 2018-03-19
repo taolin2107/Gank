@@ -7,7 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.support.v4.content.FileProvider
-import android.util.Log
 import me.taolin.app.gank.utils.GANK_APK_FILE_NAME
 import java.io.File
 
@@ -18,8 +17,6 @@ import java.io.File
  * @description
  */
 class DownloadReceiver : BroadcastReceiver() {
-
-    private val TAG = "DownloadReceiver"
 
     override fun onReceive(context: Context?, intent: Intent?) {
         if (DownloadManager.ACTION_DOWNLOAD_COMPLETE == intent?.action) {

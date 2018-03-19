@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,10 +98,6 @@ class AboutFragment : BaseFragment(), AboutContract.View {
                 .setPositiveButton(android.R.string.ok, { dialog, _ -> dialog.dismiss() })
                 .create()
                 .show()
-    }
-
-    override fun versionDownloaded() {
-        Log.d(TAG, "versionDownloaded: ")
     }
 
     private fun initInjector() {
