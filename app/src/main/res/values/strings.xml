@@ -24,4 +24,6 @@
     <string name="download">下载</string>
 
     <string name="is_latest_version_message">当前已经是最新版本</string>
+    <string name="version_downloading_title">Gank新版本</string>
+    <string name="version_downloading_message">新版本下载中</string>
 </resources>

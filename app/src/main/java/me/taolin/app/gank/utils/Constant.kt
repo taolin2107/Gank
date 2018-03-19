@@ -12,3 +12,5 @@ const val BASE_URL_GANK = "http://gank.io"
 const val KEY_CONTENT_URL = "content_url"
 
 const val URL_LATEST_VERSION = "https://raw.githubusercontent.com/taolin2107/Gank/master/version.txt"
+
+const val GANK_APK_FILE_NAME = "gank_installer.apk"

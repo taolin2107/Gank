@@ -3,14 +3,17 @@ package me.taolin.app.gank.ui.about
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
+import android.os.Environment
 import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import me.taolin.app.gank.App
+import me.taolin.app.gank.R
 import me.taolin.app.gank.data.entity.Version
 import me.taolin.app.gank.executor.PostThreadExecutor
 import me.taolin.app.gank.executor.ThreadExecutor
+import me.taolin.app.gank.utils.GANK_APK_FILE_NAME
 import me.taolin.app.gank.utils.URL_LATEST_VERSION
 import org.json.JSONObject
 import java.io.File
@@ -89,16 +92,23 @@ class AboutPresenter @Inject constructor(private val threadExecutor: ThreadExecu
         })
     }
 
-    override fun downloadFile(fileUrl: String, saveFile: File) {
+    override fun downloadFile(fileUrl: String) {
         val downloadRequest = DownloadManager.Request(Uri.parse(fileUrl))
-        downloadRequest.setTitle("文件下载")
-        downloadRequest.setDescription("下载中。。。")
+        downloadRequest.setTitle(App.instance.getString(R.string.version_downloading_title))
+        downloadRequest.setDescription(App.instance.getString(R.string.version_downloading_message))
+        downloadRequest.setMimeType("application/vnd.android.package-archive")
+
         //在通知栏显示下载进度
         downloadRequest.allowScanningByMediaScanner()
         downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
 
+        val gankFile = File("${Environment.getExternalStorageDirectory().absolutePath}/download/$GANK_APK_FILE_NAME")
+        if (gankFile.exists()) {
+            gankFile.delete()
+        }
+
         //设置保存下载apk保存路径
-        downloadRequest.setDestinationInExternalPublicDir("download", "temp.apk")
+        downloadRequest.setDestinationInExternalPublicDir("download", GANK_APK_FILE_NAME)
 
         //进入下载队列
         (App.instance.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager).enqueue(downloadRequest)

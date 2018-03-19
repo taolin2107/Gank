@@ -26,6 +26,6 @@ interface AboutContract {
 
         fun checkNewVersion(currentVersion: String)
 
-        fun downloadFile(fileUrl: String, saveFile: File)
+        fun downloadFile(fileUrl: String)
     }
 }

@@ -1,7 +1,11 @@
 package me.taolin.app.gank.ui.about
 
+import android.Manifest
 import android.app.AlertDialog
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +18,6 @@ import me.taolin.app.gank.BuildConfig
 import me.taolin.app.gank.data.entity.Version
 import me.taolin.app.gank.di.component.DaggerAboutComponent
 import me.taolin.app.gank.di.module.AboutModule
-import java.io.File
 import javax.inject.Inject
 
 /**
@@ -26,7 +29,9 @@ import javax.inject.Inject
 class AboutFragment : BaseFragment(), AboutContract.View {
 
     private val TAG = "AboutFragment"
+    private val REQUEST_CODE_WRITE_PERMISSION = 0x01
     @Inject lateinit var presenter: AboutContract.Presenter
+    private var newVersion: Version? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_about, container, false)
@@ -55,11 +60,36 @@ class AboutFragment : BaseFragment(), AboutContract.View {
                 .setMessage(getString(R.string.new_version_checked_message, BuildConfig.VERSION_NAME, version.version))
                 .setNegativeButton(android.R.string.cancel, { dialog, _ -> dialog.dismiss() })
                 .setPositiveButton(R.string.download, { dialog, _ ->
-                    presenter.downloadFile(version.url, File(""))
+                    newVersion = version
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (ContextCompat.checkSelfPermission(App.instance, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                                // Should we show an explanation
+                            } else {
+                                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE_WRITE_PERMISSION)
+                            }
+                        } else {
+                            presenter.downloadFile(version.url)
+                        }
+                    } else {
+                        presenter.downloadFile(version.url)
+                    }
                     dialog.dismiss()
                 })
                 .create()
                 .show()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == REQUEST_CODE_WRITE_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                newVersion?.let {
+                    presenter.downloadFile(it.url)
+                }
+            }
+        }
     }
 
     override fun isLatestVersion() {
