@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import me.taolin.app.gank.R
 import me.taolin.app.gank.base.BaseActivity
@@ -50,11 +51,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         supportFragmentManager.beginTransaction().replace(R.id.content_panel, fragment).commit()
     }
 
+    private var backPressedCount = 0
+
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            if (backPressedCount == 0) {
+                backPressedCount++
+                Toast.makeText(this, R.string.press_back_again_to_exit, Toast.LENGTH_SHORT).show()
+            } else {
+                super.onBackPressed()
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import `in`.srain.cube.views.ptr.PtrFrameLayout
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,6 +68,12 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
             articleListView.layoutManager = LinearLayoutManager(activity)
         }
         articleListView.adapter = listAdapter
+        listAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onChanged() {
+                super.onChanged()
+                emptyView.visibility = if (listAdapter.itemCount > 0) View.GONE else View.VISIBLE
+            }
+        })
 
         refreshLayout.autoLoadMore()
         refreshLayout.setLastUpdateTimeRelateObject(this)

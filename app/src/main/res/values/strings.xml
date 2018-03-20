@@ -30,4 +30,6 @@
     <string name="version_downloading_message">新版本下载中</string>
 
     <string name="tag_list_item">&#032; &#187;</string>
+    <string name="tag_loading">Loading&#8230;</string>
+    <string name="press_back_again_to_exit">再次点击退出</string>
 </resources>
