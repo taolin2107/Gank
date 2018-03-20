@@ -21,10 +21,15 @@ import me.taolin.app.gank.utils.KEY_CONTENT_URL
  */
 class ContentActivity : BaseActivity() {
 
+    private lateinit var webView: WebView
+
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content)
+
+        webView = WebView(applicationContext)
+        contentRoot.addView(webView, 0)
 
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
@@ -57,6 +62,13 @@ class ContentActivity : BaseActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        webView.removeAllViews()
+        webView.destroy()
+        contentRoot.removeAllViews()
     }
 
     private inner class MyWebViewClient : WebViewClient() {
