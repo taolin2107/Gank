@@ -3,7 +3,6 @@ package me.taolin.app.gank.ui.about
 import me.taolin.app.gank.base.BasePresenter
 import me.taolin.app.gank.base.BaseView
 import me.taolin.app.gank.data.entity.Version
-import java.io.File
 
 /**
  * @author taolin

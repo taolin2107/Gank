@@ -27,7 +27,6 @@ import javax.inject.Inject
  */
 class AboutFragment : BaseFragment(), AboutContract.View {
 
-    private val TAG = "AboutFragment"
     private val REQUEST_CODE_WRITE_PERMISSION = 0x01
     @Inject lateinit var presenter: AboutContract.Presenter
     private var newVersion: Version? = null

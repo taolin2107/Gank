@@ -13,7 +13,7 @@ import me.taolin.app.gank.ui.category.CategoryFragment
  */
 
 @ActivityScope
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(CategoryModule::class))
+@Component(dependencies = [(AppComponent::class)], modules = [(CategoryModule::class)])
 interface CategoryComponent {
 
     fun inject(fragment: CategoryFragment)

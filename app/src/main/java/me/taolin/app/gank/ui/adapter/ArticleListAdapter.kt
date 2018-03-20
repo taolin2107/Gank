@@ -24,10 +24,10 @@ class ArticleListAdapter(private val activity: Activity?) : BaseListAdapter<Arti
         return Holder(LayoutInflater.from(activity).inflate(R.layout.layout_article_list_item, parent, false))
     }
 
-    override fun onBindViewHolder(holder: Holder?, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         val gank = gankList[position]
-        holder?.articleTitle?.text = "${gank.desc} @${gank.who} "
-        holder?.articleTitle?.setOnClickListener {
+        holder.articleTitle.text = activity?.getString(R.string.article_list_item_title, gank.desc, gank.who)
+        holder.articleTitle.setOnClickListener {
             val intent = Intent(activity, ContentActivity::class.java)
             intent.putExtra(KEY_CONTENT_URL, gank.url)
             activity?.startActivity(intent)
