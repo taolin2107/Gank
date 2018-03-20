@@ -13,8 +13,8 @@ android {
         applicationId "me.taolin.app.gank"
         minSdkVersion globalConfig.minSdkVersion
         targetSdkVersion globalConfig.targetSdkVersion
-        versionCode 2
-        versionName "1.0.2"
+        versionCode 3
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
