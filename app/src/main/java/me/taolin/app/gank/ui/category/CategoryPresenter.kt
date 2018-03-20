@@ -5,6 +5,7 @@ import io.reactivex.schedulers.Schedulers
 import me.taolin.app.gank.data.source.GankApiRepository
 import me.taolin.app.gank.executor.PostThreadExecutor
 import me.taolin.app.gank.executor.ThreadExecutor
+import me.taolin.app.gank.utils.ITEM_NUM_WITH_FIRST_PAGE
 import me.taolin.app.gank.utils.ITEM_NUM_WITH_ONE_PAGE
 import javax.inject.Inject
 
@@ -33,16 +34,16 @@ class CategoryPresenter @Inject constructor(private val threadExecutor: ThreadEx
 
     override fun loadCategoryData(category: String) {
         currentPage = 1
-        loadCategoryData(category, false)
+        loadCategoryData(category, ITEM_NUM_WITH_FIRST_PAGE, false)
     }
 
     override fun loadMoreCategoryData(category: String) {
         currentPage++
-        loadCategoryData(category, true)
+        loadCategoryData(category, ITEM_NUM_WITH_ONE_PAGE,  true)
     }
 
-    private fun loadCategoryData(category: String, isLoadMore: Boolean) {
-        disposable = gankApi.getCategoryData(category, ITEM_NUM_WITH_ONE_PAGE, currentPage)
+    private fun loadCategoryData(category: String, pageCount: Int, isLoadMore: Boolean) {
+        disposable = gankApi.getCategoryData(category, pageCount, currentPage)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutor.getSchedule())
                 .subscribe({

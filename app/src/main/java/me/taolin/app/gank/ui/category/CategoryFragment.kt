@@ -1,8 +1,7 @@
 package me.taolin.app.gank.ui.category
 
-import `in`.srain.cube.views.ptr.PtrDefaultHandler
+import `in`.srain.cube.views.ptr.PtrDefaultHandler2
 import `in`.srain.cube.views.ptr.PtrFrameLayout
-import `in`.srain.cube.views.ptr.PtrHandler
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -30,7 +29,6 @@ import javax.inject.Inject
  */
 class CategoryFragment : BaseFragment(), CategoryContract.View {
 
-    private val TAG = "CategoryFragment"
     private val KEY_CATEGORY = "category"
     private lateinit var pageCategory: String
     @Inject lateinit var presenter: CategoryContract.Presenter
@@ -70,16 +68,17 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
         }
         articleListView.adapter = listAdapter
 
-        refreshLayout.setPtrHandler(object : PtrHandler {
+        refreshLayout.autoLoadMore()
+        refreshLayout.setLastUpdateTimeRelateObject(this)
+        refreshLayout.setPtrHandler(object : PtrDefaultHandler2() {
             override fun onRefreshBegin(frame: PtrFrameLayout?) {
                 presenter.loadCategoryData(pageCategory)
             }
 
-            override fun checkCanDoRefresh(frame: PtrFrameLayout?, content: View?, header: View?): Boolean {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
+            override fun onLoadMoreBegin(frame: PtrFrameLayout?) {
+                presenter.loadMoreCategoryData(pageCategory)
             }
         })
-        refreshLayout.setLastUpdateTimeRelateObject(this)
         presenter.loadCategoryData(pageCategory)
     }
 

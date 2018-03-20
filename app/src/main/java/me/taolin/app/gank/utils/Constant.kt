@@ -15,6 +15,10 @@ const val URL_LATEST_VERSION = "https://raw.githubusercontent.com/taolin2107/Gan
 
 const val GANK_APK_FILE_NAME = "gank_installer.apk"
 
+/**
+ * 列表首次加载和加载更多时，每次加载的条目数
+ */
+const val ITEM_NUM_WITH_FIRST_PAGE = 30
 const val ITEM_NUM_WITH_ONE_PAGE = 20
 
 /**
