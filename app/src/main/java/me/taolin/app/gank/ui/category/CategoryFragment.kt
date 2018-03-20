@@ -1,9 +1,11 @@
 package me.taolin.app.gank.ui.category
 
+import `in`.srain.cube.views.ptr.PtrDefaultHandler
+import `in`.srain.cube.views.ptr.PtrFrameLayout
+import `in`.srain.cube.views.ptr.PtrHandler
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_category.*
 import me.taolin.app.gank.App
 import me.taolin.app.gank.R
 import me.taolin.app.gank.base.BaseFragment
+import me.taolin.app.gank.base.BaseListAdapter
 import me.taolin.app.gank.data.entity.Gank
 import me.taolin.app.gank.di.component.DaggerCategoryComponent
 import me.taolin.app.gank.di.module.CategoryModule
@@ -27,10 +30,11 @@ import javax.inject.Inject
  */
 class CategoryFragment : BaseFragment(), CategoryContract.View {
 
+    private val TAG = "CategoryFragment"
     private val KEY_CATEGORY = "category"
     private lateinit var pageCategory: String
     @Inject lateinit var presenter: CategoryContract.Presenter
-    private lateinit var listAdapter: RecyclerView.Adapter<*>
+    private lateinit var listAdapter: BaseListAdapter<*>
 
     companion object {
         fun newInstance(category: String): CategoryFragment {
@@ -56,18 +60,43 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
 
         initInjector()
         presenter.takeView(this)
-        presenter.loadCategoryData(pageCategory, 20, 1)
-    }
 
-    override fun refreshList(list: List<Gank>) {
         if (pageCategory == CATEGORY_BEAUTY) {
-            listAdapter = ImageListAdapter(activity, list)
+            listAdapter = ImageListAdapter(activity)
             articleListView.layoutManager = GridLayoutManager(activity, 2)
         } else {
-            listAdapter = ArticleListAdapter(activity, list)
+            listAdapter = ArticleListAdapter(activity)
             articleListView.layoutManager = LinearLayoutManager(activity)
         }
         articleListView.adapter = listAdapter
+
+        refreshLayout.setPtrHandler(object : PtrHandler {
+            override fun onRefreshBegin(frame: PtrFrameLayout?) {
+                presenter.loadCategoryData(pageCategory)
+            }
+
+            override fun checkCanDoRefresh(frame: PtrFrameLayout?, content: View?, header: View?): Boolean {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
+            }
+        })
+        refreshLayout.setLastUpdateTimeRelateObject(this)
+        presenter.loadCategoryData(pageCategory)
+    }
+
+    override fun refreshList(list: List<Gank>) {
+        listAdapter.setDataList(list)
+        listAdapter.notifyDataSetChanged()
+        stopRefresh()
+    }
+
+    override fun loadedMoreData(list: List<Gank>) {
+        listAdapter.addDataList(list)
+        listAdapter.notifyDataSetChanged()
+        stopRefresh()
+    }
+
+    private fun stopRefresh() {
+        refreshLayout.refreshComplete()
     }
 
     override fun onDestroyView() {

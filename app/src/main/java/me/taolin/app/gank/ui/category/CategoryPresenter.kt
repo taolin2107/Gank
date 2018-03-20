@@ -5,6 +5,7 @@ import io.reactivex.schedulers.Schedulers
 import me.taolin.app.gank.data.source.GankApiRepository
 import me.taolin.app.gank.executor.PostThreadExecutor
 import me.taolin.app.gank.executor.ThreadExecutor
+import me.taolin.app.gank.utils.ITEM_NUM_WITH_ONE_PAGE
 import javax.inject.Inject
 
 /**
@@ -19,6 +20,7 @@ class CategoryPresenter @Inject constructor(private val threadExecutor: ThreadEx
     private var categoryView: CategoryContract.View? = null
     @Inject lateinit var gankApi: GankApiRepository
     private var disposable: Disposable? = null
+    private var currentPage = 1
 
     override fun takeView(view: CategoryContract.View) {
         categoryView = view
@@ -29,12 +31,26 @@ class CategoryPresenter @Inject constructor(private val threadExecutor: ThreadEx
         disposable?.dispose()
     }
 
-    override fun loadCategoryData(category: String, pageNum: Int, pageCount: Int) {
-        disposable = gankApi.getCategoryData(category, pageNum, pageCount)
+    override fun loadCategoryData(category: String) {
+        currentPage = 1
+        loadCategoryData(category, false)
+    }
+
+    override fun loadMoreCategoryData(category: String) {
+        currentPage++
+        loadCategoryData(category, true)
+    }
+
+    private fun loadCategoryData(category: String, isLoadMore: Boolean) {
+        disposable = gankApi.getCategoryData(category, ITEM_NUM_WITH_ONE_PAGE, currentPage)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutor.getSchedule())
                 .subscribe({
-                    categoryView?.refreshList(it.results)
+                    if (isLoadMore) {
+                        categoryView?.loadedMoreData(it.results)
+                    } else {
+                        categoryView?.refreshList(it.results)
+                    }
                 }, { throwable ->
                     throwable.printStackTrace()
                 })

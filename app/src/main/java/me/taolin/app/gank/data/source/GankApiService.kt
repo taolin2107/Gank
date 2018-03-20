@@ -13,8 +13,8 @@ import retrofit2.http.Path
  */
 interface GankApiService {
 
-    @GET("api/data/{category}/{pageNum}/{pageCount}")
+    @GET("api/data/{category}/{pageCount}/{pageIndex}")
     fun getCategoryData(@Path("category") category: String,
-                        @Path("pageNum") pageNum: Int,
-                        @Path("pageCount") pageCount: Int): Observable<GankData>
+                        @Path("pageCount") pageCount: Int,
+                        @Path("pageIndex") pageIndex: Int): Observable<GankData>
 }

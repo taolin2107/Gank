@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import me.taolin.app.gank.R
-import me.taolin.app.gank.data.entity.Gank
+import me.taolin.app.gank.base.BaseListAdapter
 import me.taolin.app.gank.ui.content.ContentActivity
 import me.taolin.app.gank.utils.KEY_CONTENT_URL
 
@@ -18,16 +18,14 @@ import me.taolin.app.gank.utils.KEY_CONTENT_URL
  * @date 2018/03/15
  * @description
  */
-class ArticleListAdapter(private val activity: Activity?, private val articleList: List<Gank>) : RecyclerView.Adapter<ArticleListAdapter.Holder>() {
+class ArticleListAdapter(private val activity: Activity?) : BaseListAdapter<ArticleListAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
         return Holder(LayoutInflater.from(activity).inflate(R.layout.layout_article_list_item, parent, false))
     }
 
-    override fun getItemCount() = articleList.size
-
     override fun onBindViewHolder(holder: Holder?, position: Int) {
-        val gank = articleList[position]
+        val gank = gankList[position]
         holder?.articleTitle?.text = "${gank.desc} @${gank.who} "
         holder?.articleTitle?.setOnClickListener {
             val intent = Intent(activity, ContentActivity::class.java)

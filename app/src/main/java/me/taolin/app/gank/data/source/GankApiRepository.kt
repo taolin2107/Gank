@@ -23,7 +23,7 @@ class GankApiRepository @Inject constructor() {
             .build()
             .create(GankApiService::class.java)
 
-    fun getCategoryData(category: String, pageNum: Int, pageCount: Int): Observable<GankData> {
-        return gankApiService.getCategoryData(category, pageNum, pageCount)
+    fun getCategoryData(category: String, pageCount: Int, pageIndex: Int): Observable<GankData> {
+        return gankApiService.getCategoryData(category, pageCount, pageIndex)
     }
 }

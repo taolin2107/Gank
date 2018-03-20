@@ -10,7 +10,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import me.taolin.app.gank.App
 import me.taolin.app.gank.R
-import me.taolin.app.gank.data.entity.Gank
+import me.taolin.app.gank.base.BaseListAdapter
 import me.taolin.app.gank.ui.content.ContentActivity
 import me.taolin.app.gank.utils.KEY_CONTENT_URL
 
@@ -20,16 +20,14 @@ import me.taolin.app.gank.utils.KEY_CONTENT_URL
  * @date 2018/03/19
  * @description
  */
-class ImageListAdapter(private val activity: Activity?, private val imageList: List<Gank>) : RecyclerView.Adapter<ImageListAdapter.Holder>() {
+class ImageListAdapter(private val activity: Activity?) : BaseListAdapter<ImageListAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
         return Holder(LayoutInflater.from(activity).inflate(R.layout.layout_image_list_item, parent, false))
     }
 
-    override fun getItemCount() = imageList.size
-
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val gank = imageList[position]
+        val gank = gankList[position]
         Glide.with(App.instance).load(gank.url).into(holder.image)
         holder.image.setOnClickListener {
             val intent = Intent(activity, ContentActivity::class.java)

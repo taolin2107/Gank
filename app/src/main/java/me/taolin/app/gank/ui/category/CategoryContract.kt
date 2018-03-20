@@ -15,10 +15,14 @@ interface CategoryContract {
     interface View : BaseView<Presenter> {
 
         fun refreshList(list: List<Gank>)
+
+        fun loadedMoreData(list: List<Gank>)
     }
 
     interface Presenter : BasePresenter<View> {
 
-        fun loadCategoryData(category: String, pageNum: Int, pageCount: Int)
+        fun loadCategoryData(category: String)
+
+        fun loadMoreCategoryData(category: String)
     }
 }

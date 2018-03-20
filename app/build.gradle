@@ -71,6 +71,8 @@ dependencies {
     implementation appDependencies.bugly
     implementation appDependencies.glide
 
+    implementation 'in.srain.cube:ultra-ptr:1.0.11'
+
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.testRunner
     androidTestImplementation appTestDependencies.espresso

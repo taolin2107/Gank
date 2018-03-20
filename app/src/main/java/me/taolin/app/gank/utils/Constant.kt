@@ -15,6 +15,8 @@ const val URL_LATEST_VERSION = "https://raw.githubusercontent.com/taolin2107/Gan
 
 const val GANK_APK_FILE_NAME = "gank_installer.apk"
 
+const val ITEM_NUM_WITH_ONE_PAGE = 20
+
 /**
  * 页面类型
  */
