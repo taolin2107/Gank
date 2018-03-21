@@ -30,3 +30,9 @@ const val CATEGORY_IOS = "iOS"
 const val CATEGORY_FRONT_END = "前端"
 const val CATEGORY_BEAUTY = "福利"
 const val CATEGORY_VIDEO = "休息视频"
+
+/**
+ * 用户反馈sdk的id和key
+ */
+const val APP_ID_FEEDBACK = "W6rBe2NtaaDgqpPW1NT2PBAJ-gzGzoHsz"
+const val APP_KEY_FEEDBACK = "8UJr1Q7Uk7dJYeom2t4QjNcG"

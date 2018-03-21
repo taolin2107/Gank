@@ -2,10 +2,13 @@ package me.taolin.app.gank
 
 import android.app.Application
 import android.content.Context
+import com.avos.avoscloud.AVOSCloud
 import com.tencent.bugly.crashreport.CrashReport
 import me.taolin.app.gank.di.component.AppComponent
 import me.taolin.app.gank.di.component.DaggerAppComponent
 import me.taolin.app.gank.di.module.AppModule
+import me.taolin.app.gank.utils.APP_ID_FEEDBACK
+import me.taolin.app.gank.utils.APP_KEY_FEEDBACK
 
 /**
  * @author taolin
@@ -35,6 +38,7 @@ class App : Application() {
         initBugly()
         initLeakCanary()
         component.inject(this)
+        AVOSCloud.initialize(this, APP_ID_FEEDBACK, APP_KEY_FEEDBACK)
     }
 
     private fun initLeakCanary() {

@@ -31,6 +31,8 @@
 
         <activity android:name=".ui.content.ContentActivity" />
 
+        <activity android:name="com.avos.avoscloud.feedback.ThreadActivity" />
+
         <receiver android:name=".receiver.DownloadReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />

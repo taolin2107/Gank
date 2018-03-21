@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.widget.Toast
+import com.avos.avoscloud.feedback.FeedbackAgent
 import kotlinx.android.synthetic.main.activity_main.*
 import me.taolin.app.gank.R
 import me.taolin.app.gank.base.BaseActivity
@@ -42,7 +43,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.type_beauty -> replaceContent(CategoryFragment.newInstance(CATEGORY_BEAUTY))
             R.id.type_relax_video -> replaceContent(CategoryFragment.newInstance(CATEGORY_VIDEO))
             R.id.type_about -> replaceContent(AboutFragment())
-            R.id.type_feedback -> {}
+            R.id.type_feedback -> FeedbackAgent(this).startDefaultThreadActivity()
         }
         return true
     }
