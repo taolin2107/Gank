@@ -17,7 +17,7 @@ Gank是基于[干货集中营（http://gank.io）](http://gank.io)的开放api�
 
 ## App Download
 
-[Gank.apk](./gank-release.apk)
+[Gank.apk](https://github.com/taolin2107/Gank/raw/master/gank-release.apk)
 
 ## Preview
 
