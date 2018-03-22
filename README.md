@@ -15,6 +15,10 @@ Gank是基于[干货集中营（http://gank.io）](http://gank.io)的开放api�
  * 基于github实现的版本更新。
  * 支持用户反馈。
 
+## App Download
+
+[Gank.apk](./gank-release.apk)
+
 ## Preview
 
 ![screen1](./screenshots/1.png)
