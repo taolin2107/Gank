@@ -36,3 +36,8 @@ const val CATEGORY_VIDEO = "休息视频"
  */
 const val APP_ID_FEEDBACK = "W6rBe2NtaaDgqpPW1NT2PBAJ-gzGzoHsz"
 const val APP_KEY_FEEDBACK = "8UJr1Q7Uk7dJYeom2t4QjNcG"
+
+/**
+ * 用户反馈模块的用户名
+ */
+const val KEY_USERNAME_FEEDBACK = "feedback_username"

@@ -13,6 +13,7 @@ import me.taolin.app.gank.R
 import me.taolin.app.gank.base.BaseActivity
 import me.taolin.app.gank.ui.about.AboutFragment
 import me.taolin.app.gank.ui.category.CategoryFragment
+import me.taolin.app.gank.ui.feedback.FeedbackFragment
 import me.taolin.app.gank.utils.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -30,6 +31,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (supportFragmentManager.findFragmentById(R.id.content_panel) == null) {
             replaceContent(CategoryFragment.newInstance(CATEGORY_ALL))
         }
+        FeedbackAgent(this).sync()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -43,7 +45,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.type_beauty -> replaceContent(CategoryFragment.newInstance(CATEGORY_BEAUTY))
             R.id.type_relax_video -> replaceContent(CategoryFragment.newInstance(CATEGORY_VIDEO))
             R.id.type_about -> replaceContent(AboutFragment())
-            R.id.type_feedback -> FeedbackAgent(this).startDefaultThreadActivity()
+            R.id.type_feedback -> replaceContent(FeedbackFragment())
         }
         return true
     }
