@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat
  */
 class FeedbackAdapter(private val dataList: List<Comment>) : RecyclerView.Adapter<FeedbackAdapter.Holder>() {
 
-    private val dataFormat = SimpleDateFormat("MM/dd hh:mm")
+    private val dataFormat = SimpleDateFormat("MM/dd HH:mm")
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
         return Holder(LayoutInflater.from(App.instance).inflate(R.layout.layout_feedback_item, parent, false))
